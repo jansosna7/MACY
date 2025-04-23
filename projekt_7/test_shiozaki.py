@@ -4,7 +4,6 @@ from RS_decoder_error_locator import rs_shiozaki_gao_decode
 import random
 
 def main():
-    # Parametry
     prim = 0x11d
     n = 20
     k = 11
