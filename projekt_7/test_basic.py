@@ -2,8 +2,8 @@
 from GF_arithmetic import *
 from RS_encoder import *
 from RS_decoder_error_locator import *
-
 import random
+
 # Configuration of the parameters and input message
 prim = 0x11d
 n = 20 # set the size you want, it must be > k, the remaining n-k symbols will be the ECC code (more is better)
@@ -27,5 +27,7 @@ print("Corrupted: %s" % mesecc)
 # Decoding/repairing the corrupted message, by providing the locations of a few erasures, we get below the Singleton Bound
 # Remember that the Singleton Bound is: 2*e+v <= (n-k)
 corrected_message, corrected_ecc = rs_correct_msg(mesecc, n-k, erase_pos=[0, 1, 2])
+corrected_message_shiozaki, corrected_ecc_shiozaki = rs_correct_msg_shiozaki(mesecc, n-k, erase_pos=[0, 1, 2])
 print("Repaired: %s" % (corrected_message+corrected_ecc))
 print(''.join([chr(x) for x in corrected_message]))
+

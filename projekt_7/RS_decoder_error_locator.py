@@ -1,5 +1,16 @@
 #https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders
 from GF_arithmetic import *
+from RS_shiozaki_decoder import *
+
+
+def rs_correct_msg_shiozaki(codeword, nsym, erase_pos=None):
+    """
+    Wrapper, który podmienia funkcję korekcji na wersję z dekoderem Shiozaki-Gao.
+    Zachowuje oryginalną sygnaturę, by nie zmieniać kodu testowego.
+    """
+    # ignore erase_pos (nieużywane w Shiozaki-Gao)
+    message, ecc = rs_shiozaki_gao_decode(codeword, nsym)
+    return message, ecc
 
 def rs_calc_syndromes(msg, nsym):
     '''Given the received codeword msg and the number of error correcting symbols (nsym), computes the syndromes polynomial.
